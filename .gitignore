@@ -1,3 +1,7 @@
 /target/
 /Java.iml
 /.idea/
+/.settings/
+/.vscode/
+/.classpath/
+/.project/
