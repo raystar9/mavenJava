@@ -1,4 +1,4 @@
-package week4.day16.exam._13_synProblem;
+package week4.day17.practice._02_synchronize2;
 
 public class AccountMain {
 
