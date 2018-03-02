@@ -1,8 +1,6 @@
 package week4.day14.test.member;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 class MemberInput {
@@ -12,15 +10,15 @@ class MemberInput {
 		Scanner sc = new Scanner(System.in);
 		String name, email, address;
 		int age;
-		MemberInfo member;
+		MemberInfo member = null;
 		
 		System.out.print("Input name : ");
 		name = sc.next();
 		System.out.print("Input age : ");
 		age = sc.nextInt();
-
+		
 		sc.nextLine();
-
+		
 		System.out.print("Input E-Mail : ");
 		email = sc.nextLine();
 		System.out.print("Input address : ");
