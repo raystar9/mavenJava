@@ -35,7 +35,8 @@ class Main {
                         searchMenu(memberList, sc);
                         break;
                     case 3:
-                    	updateMenu(memberList, sc);
+                        updateMenu(memberList, sc);
+                        break;
                     case 5:
                         Print.Info.printAll(memberList);
                         break;
@@ -44,15 +45,15 @@ class Main {
                         mainMenuRunning = false;
                         break;
                     default:
-                        Print.SystemMessage.wrongNumber();
+                        Print.General.wrongNumber();
                 }
             }
         }
     }
 
     private static void updateMenu(ArrayList<MemberInfo> memberList, Scanner sc) {
-    	boolean updateMenuRunning = true;
-    	int selector;
+        boolean updateMenuRunning = true;
+        int selector;
         while (updateMenuRunning) {
             Print.Menu.updateMenu();
             String select = sc.nextLine();
@@ -78,20 +79,37 @@ class Main {
                         updateMenuRunning = false;
                         break;
                     default:
-                        Print.SystemMessage.wrongNumber();
+                        Print.General.wrongNumber();
                 }
             }
         }
-	}
+    }
 
-	private static void updateByName(ArrayList<MemberInfo> memberList, Scanner sc) {
-		ArrayList<MemberInfo> targetList = searchByName(memberList, sc);
+    private static void updateByName(ArrayList<MemberInfo> memberList, Scanner sc) {
+        ArrayList<MemberInfo> targetList = searchByName(memberList, sc);
+        String check;
+        int index = 0;
+        if (targetList.size() == 0) {
+            Print.General.noResult();
+            return;
+        } else if (targetList.size() >= 2) {
+            while (true) {
+                Print.General.selectResultNo();
+                check = sc.nextLine();
+                if (Main.isNumber(check)) {
+                    index = Integer.parseInt(check);
+                    if (index <= targetList.size() && index > 0)
+                        break;
+                    else
+                        Print.General.wrongNumber();
+                }
+            }
+        }
         Print.General.inputTarget();
-        String targetStr = sc.nextLine();
-        CRUDEngine.updateByName(targetList, targetStr);
-	}
+        targetList.get(index - 1).setName(sc.nextLine());
+    }
 
-	static void inputInfo(ArrayList<MemberInfo> memberList, Scanner sc) {
+    static void inputInfo(ArrayList<MemberInfo> memberList, Scanner sc) {
 
         String name, email, address, ageStr;
         int age;
@@ -164,7 +182,7 @@ class Main {
                         searchMenuRunning = false;
                         break;
                     default:
-                        Print.SystemMessage.wrongNumber();
+                        Print.General.wrongNumber();
                 }
             }
         }
@@ -231,6 +249,8 @@ class Main {
     //endregion
 
     static boolean isNumber(String str) {
+        if (str.equals(""))
+            return false;
         for (int i = 0; i < str.length(); i++) {
             if (str.charAt(i) < '0' || str.charAt(i) > '9') {
                 return false;

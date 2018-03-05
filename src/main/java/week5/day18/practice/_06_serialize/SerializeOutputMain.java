@@ -4,7 +4,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.GregorianCalendar;
 
-class SerializeMain {
+class SerializeOutputMain {
 
 	static final String resourceAddress = "src/main/resources/";
 	

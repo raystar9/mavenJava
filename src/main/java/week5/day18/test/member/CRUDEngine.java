@@ -51,16 +51,4 @@ class CRUDEngine {
         return infoList;
     }
 
-    static void updateByName(ArrayList<MemberInfo> memberList, String target) {
-        updateCategory(memberList, target, CategoryId.name);
-    }
-
-    private static void updateCategory(ArrayList<MemberInfo> targetList, String target, CategoryId id) {
-        if (targetList.size() == 0) {
-            Print.General.noResult();
-            return;
-        } else {
-            targetList.get(0).setName(target);
-        }
-    }
 }

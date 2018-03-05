@@ -9,6 +9,7 @@ class Print {
             System.out.println("Select menu");
             System.out.println("1. Input data");
             System.out.println("2. Search data");
+            System.out.println("3. Update data");
             System.out.println("5. Output data");
             System.out.println("6. Quit");
         }
@@ -21,9 +22,9 @@ class Print {
             System.out.println("4. Address");
             System.out.println("5. Return to main menu");
         }
-        
+
         static void updateMenu() {
-        	System.out.println("Select the menu you want to update by");
+            System.out.println("Select the menu you want to update by");
             System.out.println("1. Name");
             System.out.println("2. Age");
             System.out.println("3. E-Mail");
@@ -51,9 +52,7 @@ class Print {
             systemPrint("Return to main menu.");
         }
 
-        public static void wrongNumber() {
-            systemPrint("You input wrong number.");
-        }
+
     }
 
     static class General {
@@ -73,7 +72,7 @@ class Print {
             System.out.print("Input an address : ");
         }
 
-        static void inputTarget(){
+        static void inputTarget() {
             System.out.print("Input target value : ");
         }
 
@@ -85,7 +84,15 @@ class Print {
             System.out.println("Input 'y' to continue, 'q' to quit");
         }
 
-        static void changeSuccessful(){
+        public static void wrongNumber() {
+            System.out.println("You input wrong number.");
+        }
+
+        static void selectResultNo() {
+            System.out.print("Select a result number :");
+        }
+
+        static void changeSuccessful() {
             System.out.println("Changed successfully.");
         }
     }
