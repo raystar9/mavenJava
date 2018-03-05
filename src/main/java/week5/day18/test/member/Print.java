@@ -73,12 +73,20 @@ class Print {
             System.out.print("Input an address : ");
         }
 
+        static void inputTarget(){
+            System.out.print("Input target value : ");
+        }
+
         static void noResult() {
             System.out.println("No result found.");
         }
 
         static void yesOrQuit() {
             System.out.println("Input 'y' to continue, 'q' to quit");
+        }
+
+        static void changeSuccessful(){
+            System.out.println("Changed successfully.");
         }
     }
 

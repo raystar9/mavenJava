@@ -65,13 +65,13 @@ class Main {
                         updateByName(memberList, sc);
                         break;
                     case 2:
-                        updateByAge(memberList, sc);
+//                        updateByAge(memberList, sc);
                         break;
                     case 3:
-                        updateByEMail(memberList, sc);
+//                        updateByEMail(memberList, sc);
                         break;
                     case 4:
-                        updateByAddress(memberList, sc);
+//                        updateByAddress(memberList, sc);
                         break;
                     case 5:
                         Print.SystemMessage.returnToMain();
@@ -85,14 +85,10 @@ class Main {
 	}
 
 	private static void updateByName(ArrayList<MemberInfo> memberList, Scanner sc) {
-		Print.General.inputName();
-        String str = sc.nextLine();
-        ArrayList<MemberInfo> results = SearchEngine.byName(memberList, str);
-        if (results != null) {
-            Print.Info.printResult(results);
-        } else {
-            Print.General.noResult();
-        }
+		ArrayList<MemberInfo> targetList = searchByName(memberList, sc);
+        Print.General.inputTarget();
+        String targetStr = sc.nextLine();
+        CRUDEngine.updateByName(targetList, targetStr);
 	}
 
 	static void inputInfo(ArrayList<MemberInfo> memberList, Scanner sc) {
@@ -175,18 +171,19 @@ class Main {
     }
 
     //region search
-    static void searchByName(ArrayList<MemberInfo> memberList, Scanner sc) {
+    static ArrayList<MemberInfo> searchByName(ArrayList<MemberInfo> memberList, Scanner sc) {
         Print.General.inputName();
         String str = sc.nextLine();
-        ArrayList<MemberInfo> results = SearchEngine.byName(memberList, str);
+        ArrayList<MemberInfo> results = CRUDEngine.searchByName(memberList, str);
         if (results != null) {
             Print.Info.printResult(results);
         } else {
             Print.General.noResult();
         }
+        return results;
     }
 
-    static void searchByAge(ArrayList<MemberInfo> memberList, Scanner sc) {
+    static ArrayList<MemberInfo> searchByAge(ArrayList<MemberInfo> memberList, Scanner sc) {
         String numStr;
         int number;
         while (true) {
@@ -199,34 +196,37 @@ class Main {
             }
         }
 
-        ArrayList<MemberInfo> results = SearchEngine.byAge(memberList, number);
+        ArrayList<MemberInfo> results = CRUDEngine.searchByAge(memberList, number);
         if (results != null) {
             Print.Info.printResult(results);
         } else {
             Print.General.noResult();
         }
+        return results;
     }
 
-    static void searchByEMail(ArrayList<MemberInfo> memberList, Scanner sc) {
+    static ArrayList<MemberInfo> searchByEMail(ArrayList<MemberInfo> memberList, Scanner sc) {
         Print.General.inputEMail();
         String str = sc.nextLine();
-        ArrayList<MemberInfo> results = SearchEngine.byEMail(memberList, str);
+        ArrayList<MemberInfo> results = CRUDEngine.searchByEMail(memberList, str);
         if (results != null) {
             Print.Info.printResult(results);
         } else {
             Print.General.noResult();
         }
+        return results;
     }
 
-    static void searchByAddress(ArrayList<MemberInfo> memberList, Scanner sc) {
+    static ArrayList<MemberInfo> searchByAddress(ArrayList<MemberInfo> memberList, Scanner sc) {
         Print.General.inputAddress();
         String str = sc.nextLine();
-        ArrayList<MemberInfo> results = SearchEngine.byAddress(memberList, str);
+        ArrayList<MemberInfo> results = CRUDEngine.searchByAddress(memberList, str);
         if (results != null) {
             Print.Info.printResult(results);
         } else {
             Print.General.noResult();
         }
+        return results;
     }
     //endregion
 
