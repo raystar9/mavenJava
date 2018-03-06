@@ -1,7 +1,11 @@
-The little prince
-I love you
-I love you
-I love you
-I love you
-I love you
-I love you
+      *** scoreTable ***      
+  Kim :  92  87  95  91.3 
+ Park : 100  90  88  92.7 
+ Choi :  75  88  85  82.7 
+1 : 2018/ 03/ 06 오전 11 
+2 : 18/ 03/ 06 오전 11:11 
+3 : 2018/ 3월/ 06 화요일 오전 11:43:39 
+4 : 03/06/18 
+5 : 2018-03-06 
+6 : 2018-03-06 
+7 : 2018-03-06 

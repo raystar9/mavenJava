@@ -23,13 +23,13 @@ class Main {
 
             Print.Menu.mainMenu();
             select = sc.nextLine();
-            if (!isNumber(select)) {
+            if (!CRUD.isNumber(select)) {
                 Print.SystemMessage.notANumber();
             } else {
                 selector = Integer.parseInt(select);
                 switch (selector) {
                     case 1:
-                        inputInfo(memberList, sc);
+                        CRUD.inputInfo(memberList, sc);
                         break;
                     case 2:
                         searchMenu(memberList, sc);
@@ -57,22 +57,22 @@ class Main {
         while (updateMenuRunning) {
             Print.Menu.updateMenu();
             String select = sc.nextLine();
-            if (!isNumber(select)) {
+            if (!CRUD.isNumber(select)) {
                 Print.SystemMessage.notANumber();
             } else {
                 selector = Integer.parseInt(select);
                 switch (selector) {
                     case 1:
-                        updateByName(memberList, sc);
+                        CRUD.updateByName(memberList, sc);
                         break;
                     case 2:
-//                        updateByAge(memberList, sc);
+                        CRUD.updateByAge(memberList, sc);
                         break;
                     case 3:
-//                        updateByEMail(memberList, sc);
+                        CRUD.updateByEMail(memberList, sc);
                         break;
                     case 4:
-//                        updateByAddress(memberList, sc);
+                        CRUD.updateByAddress(memberList, sc);
                         break;
                     case 5:
                         Print.SystemMessage.returnToMain();
@@ -85,97 +85,28 @@ class Main {
         }
     }
 
-    private static void updateByName(ArrayList<MemberInfo> memberList, Scanner sc) {
-        ArrayList<MemberInfo> targetList = searchByName(memberList, sc);
-        String check;
-        int index = 0;
-        if (targetList.size() == 0) {
-            Print.General.noResult();
-            return;
-        } else if (targetList.size() >= 2) {
-            while (true) {
-                Print.General.selectResultNo();
-                check = sc.nextLine();
-                if (Main.isNumber(check)) {
-                    index = Integer.parseInt(check);
-                    if (index <= targetList.size() && index > 0)
-                        break;
-                    else
-                        Print.General.wrongNumber();
-                }
-            }
-        }
-        Print.General.inputTarget();
-        targetList.get(index - 1).setName(sc.nextLine());
-    }
-
-    static void inputInfo(ArrayList<MemberInfo> memberList, Scanner sc) {
-
-        String name, email, address, ageStr;
-        int age;
-        boolean yq, isRunning;
-        MemberInfo member;
-
-        isRunning = true;
-        while (isRunning) {
-            yq = false;
-            Print.General.inputName();
-            name = sc.nextLine();
-            while (true) {
-                Print.General.inputAge();
-                ageStr = sc.nextLine();
-                if (isNumber(ageStr)) {
-                    age = Integer.parseInt(ageStr);
-                    break;
-                }
-                Print.SystemMessage.notANumber();
-            }
-            Print.General.inputEMail();
-            email = sc.nextLine();
-            Print.General.inputAddress();
-            address = sc.nextLine();
-
-            member = new MemberInfo(name, age, email, address);
-
-            memberList.add(member);
-
-            while (!yq) {
-                Print.General.yesOrQuit();
-                String in = sc.nextLine();
-
-                if (in.equals("q")) {
-                    isRunning = false;
-                    Print.SystemMessage.returnToMain();
-                    yq = true;
-                } else if (in.equals("y")) {
-                    yq = true;
-                }
-            }
-        }
-    }
-
     static void searchMenu(ArrayList<MemberInfo> memberList, Scanner sc) {
         boolean searchMenuRunning = true;
         int selector;
         while (searchMenuRunning) {
             Print.Menu.searchMenu();
             String select = sc.nextLine();
-            if (!isNumber(select)) {
+            if (!CRUD.isNumber(select)) {
                 Print.SystemMessage.notANumber();
             } else {
                 selector = Integer.parseInt(select);
                 switch (selector) {
                     case 1:
-                        searchByName(memberList, sc);
+                        CRUD.searchByName(memberList, sc);
                         break;
                     case 2:
-                        searchByAge(memberList, sc);
+                        CRUD.searchByAge(memberList, sc);
                         break;
                     case 3:
-                        searchByEMail(memberList, sc);
+                        CRUD.searchByEMail(memberList, sc);
                         break;
                     case 4:
-                        searchByAddress(memberList, sc);
+                        CRUD.searchByAddress(memberList, sc);
                         break;
                     case 5:
                         Print.SystemMessage.returnToMain();
@@ -187,75 +118,5 @@ class Main {
             }
         }
     }
-
-    //region search
-    static ArrayList<MemberInfo> searchByName(ArrayList<MemberInfo> memberList, Scanner sc) {
-        Print.General.inputName();
-        String str = sc.nextLine();
-        ArrayList<MemberInfo> results = CRUDEngine.searchByName(memberList, str);
-        if (results != null) {
-            Print.Info.printResult(results);
-        } else {
-            Print.General.noResult();
-        }
-        return results;
-    }
-
-    static ArrayList<MemberInfo> searchByAge(ArrayList<MemberInfo> memberList, Scanner sc) {
-        String numStr;
-        int number;
-        while (true) {
-            Print.General.inputAge();
-            numStr = sc.nextLine();
-
-            if (isNumber(numStr)) {
-                number = Integer.parseInt(numStr);
-                break;
-            }
-        }
-
-        ArrayList<MemberInfo> results = CRUDEngine.searchByAge(memberList, number);
-        if (results != null) {
-            Print.Info.printResult(results);
-        } else {
-            Print.General.noResult();
-        }
-        return results;
-    }
-
-    static ArrayList<MemberInfo> searchByEMail(ArrayList<MemberInfo> memberList, Scanner sc) {
-        Print.General.inputEMail();
-        String str = sc.nextLine();
-        ArrayList<MemberInfo> results = CRUDEngine.searchByEMail(memberList, str);
-        if (results != null) {
-            Print.Info.printResult(results);
-        } else {
-            Print.General.noResult();
-        }
-        return results;
-    }
-
-    static ArrayList<MemberInfo> searchByAddress(ArrayList<MemberInfo> memberList, Scanner sc) {
-        Print.General.inputAddress();
-        String str = sc.nextLine();
-        ArrayList<MemberInfo> results = CRUDEngine.searchByAddress(memberList, str);
-        if (results != null) {
-            Print.Info.printResult(results);
-        } else {
-            Print.General.noResult();
-        }
-        return results;
-    }
-    //endregion
-
-    static boolean isNumber(String str) {
-        if (str.equals(""))
-            return false;
-        for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) < '0' || str.charAt(i) > '9') {
-                return false;
-            }
-        }
-        return true;
-    }
+    
 }
