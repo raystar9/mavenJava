@@ -24,7 +24,7 @@ class Main {
 			Print.Menu.mainMenu();
 			select = sc.nextLine();
 			if (!CRUD.isNumber(select)) {
-				Print.SystemMessage.notANumber();
+				Print.General.notANumber();
 			} else {
 				selector = Integer.parseInt(select);
 				switch (selector) {
@@ -61,7 +61,7 @@ class Main {
 			Print.Menu.searchMenu();
 			String select = sc.nextLine();
 			if (!CRUD.isNumber(select)) {
-				Print.SystemMessage.notANumber();
+				Print.General.notANumber();
 			} else {
 				selector = Integer.parseInt(select);
 				switch (selector) {
@@ -95,7 +95,7 @@ class Main {
 			Print.Menu.updateMenu();
 			String select = sc.nextLine();
 			if (!CRUD.isNumber(select)) {
-				Print.SystemMessage.notANumber();
+				Print.General.notANumber();
 			} else {
 				selector = Integer.parseInt(select);
 				switch (selector) {
@@ -129,7 +129,7 @@ class Main {
 			Print.Menu.deleteMenu();
 			String select = sc.nextLine();
 			if (!CRUD.isNumber(select)) {
-				Print.SystemMessage.notANumber();
+				Print.General.notANumber();
 			} else {
 				selector = Integer.parseInt(select);
 				switch (selector) {

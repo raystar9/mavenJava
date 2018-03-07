@@ -52,10 +52,6 @@ class Print {
             System.out.println(_system + str);
         }
 
-        public static void notANumber() {
-            systemPrint("You input not a number.");
-        }
-
         public static void quit() {
             systemPrint("Program quit.");
         }
@@ -98,6 +94,10 @@ class Print {
 
         public static void wrongNumber() {
             System.out.println("You input wrong number.");
+        }
+
+        public static void notANumber() {
+            System.out.println("You input not a number.");
         }
 
         static void selectResultNo() {
